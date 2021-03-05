@@ -24,6 +24,16 @@ class GildedRose(object):
             item.quality = 50
         item.sell_in = item.sell_in - 1
     
+    def update_quality_conjured(self, item):
+        if item.sell_in < 0:
+            item.quality = item.quality - 4
+        else:
+            item.quality = item.quality -2
+
+        if item.quality <0:
+            item.quality = 0
+        item.sell_in = item.sell_in -1
+
     def update_quality_other_items(self, item):
         if item.sell_in < 0:
             item.quality = item.quality - 2
@@ -40,6 +50,8 @@ class GildedRose(object):
                 self.update_quality_aged_brie(item)
             elif item.name == "Backstage passes":
                 self.update_quality_backstage_passes(item)
+            elif "Conjured" in item.name:
+                self.update_quality_conjured(item)
             elif item.name != "Sulfuras":
                 self.update_quality_other_items(item)
 
