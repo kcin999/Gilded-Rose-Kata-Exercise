@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "Catch.hpp"
 #include "GildedRose.h"
+#include <string>
 
 TEST_CASE("GildedRoseUnitTest", "Foo")
 {
@@ -12,7 +13,7 @@ TEST_CASE("GildedRoseUnitTest", "Foo")
             "Elixir of the Mongoose, 5, 7\n"
             "Sulfuras, Hand of Ragnaros, 0, 80\n"
             "Sulfuras, Hand of Ragnaros, -1, 80\n"
-            "Backstage passes to a TAFKAL80ETC concert, 15, 20\n"
+            "Backstage passes to a TAFKAL80ETC concert, 15, 20\n" 
             "Backstage passes to a TAFKAL80ETC concert, 10, 49\n"
             "Backstage passes to a TAFKAL80ETC concert, 5, 49\n"
             "Conjured Mana Cake, 3, 6\n"
@@ -48,7 +49,7 @@ TEST_CASE("GildedRoseUnitTest", "Foo")
 
     GildedRose app(items);
 
-    std::string actual = "OMGHAI\n";
+    std::string actual = "OMGHAI!\n";
 
     for (int day = 0; day <= 1; day++)
     {
@@ -64,6 +65,6 @@ TEST_CASE("GildedRoseUnitTest", "Foo")
         app.updateQuality();
     }
     cout << actual;
-
-    REQUIRE(actual.compare(expected));
+    
+    REQUIRE(actual.compare(expected) == 0);
 }
