@@ -7,69 +7,42 @@ void GildedRose::updateQuality()
 {
     for (int i = 0; i < items.size(); i++)
     {
-        updateOneItem(items[i]);
-    }
-}
-
-void GildedRose::updateOneItem(Item& item) {
-    if (item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert")
-    {
-        if (item.name != "Sulfuras, Hand of Ragnaros")
-        {
-            decrementQuality(item);
-        }
-    }
-    else
-    {
-        if (item.quality < 50)
-        {
-            item.quality = item.quality + 1;
-
-            if (item.name == "Backstage passes to a TAFKAL80ETC concert")
-            {
-                if (item.sellIn < 11)
-                {
-                    incrementQuality(item);
-                }
-
-                if (item.sellIn < 6)
-                {
-                    incrementQuality(item);
-                }
-            }
-        }
-    }
-
-    if (item.name != "Sulfuras, Hand of Ragnaros")
-    {
-        item.sellIn = item.sellIn - 1;
-    }
-
-    if (item.sellIn < 0)
-    {
-        if (item.name != "Aged Brie")
-        {
-            if (item.name != "Backstage passes to a TAFKAL80ETC concert")
-            {
-                if (item.name != "Sulfuras, Hand of Ragnaros")
-                {
-                    decrementQuality(item);
-                }
-            }
-            else
-            {
-                item.quality = item.quality - item.quality;
-            }
+        if (items[i].name.compare("Sulfuras, Hand of Ragnaros") == 0) {
+            Legendary category = Legendary();
+            category.updateOneItem(items[i]);
         }
         else
         {
-            incrementQuality(item);
+            ItemCategory category = ItemCategory();
+            category.updateOneItem(items[i]);
         }
     }
-
 }
 
-void GildedRose::decrementQuality(Item& item)
+void GildedRose::ItemCategory::updateOneItem(Item& item) {
+    updateQuality(item);
+
+    updateSellIn(item);
+
+    if (item.sellIn < 0) {
+        updateExpired(item);
+    }
+    
+}
+
+void GildedRose::ItemCategory::updateQuality(Item& item) {
+    decrementQuality(item);
+}
+
+void GildedRose::ItemCategory::updateSellIn(Item& item) {
+    item.sellIn = item.sellIn - 1;
+}
+
+void GildedRose::ItemCategory::updateExpired(Item& item) {
+    decrementQuality(item);
+}
+
+void GildedRose::ItemCategory::decrementQuality(Item& item)
 {
     if (item.quality > 0)
     {
@@ -77,10 +50,16 @@ void GildedRose::decrementQuality(Item& item)
     }
 }
 
-void GildedRose::incrementQuality(Item& item)
+void GildedRose::ItemCategory::incrementQuality(Item& item)
 {
     if (item.quality < 50)
     {
         item.quality = item.quality + 1;
     }
 }
+
+void GildedRose::Legendary::updateExpired(Item& item) {};
+
+void GildedRose::Legendary::updateSellIn(Item& item) {};
+
+void GildedRose::Legendary::updateQuality(Item& item) {};

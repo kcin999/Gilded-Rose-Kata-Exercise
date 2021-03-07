@@ -21,8 +21,20 @@ public:
     
     void updateQuality();
 private:
-    void updateOneItem(Item& item);
-    void decrementQuality(Item& item);
-    void incrementQuality(Item& item);
+    class ItemCategory {
+    public:
+        void updateOneItem(Item& item);
+    protected:
+        void decrementQuality(Item& item);
+        void incrementQuality(Item& item);
+        void updateExpired(Item& item);
+        void updateSellIn(Item& item);
+        void updateQuality(Item& item);
+    };
+    class Legendary : public ItemCategory {
+        void updateExpired(Item& item);
+        void updateSellIn(Item& item);
+        void updateQuality(Item& item);
+    };
 };
 
