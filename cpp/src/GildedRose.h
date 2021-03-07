@@ -46,5 +46,10 @@ private:
         void updateExpired(Item& item);
         void updateQuality(Item& item);
     };
+
+    class Conjured : public ItemCategory {
+        void updateExpired(Item& item);
+        void updateQuality(Item& item);
+    };
 };
 

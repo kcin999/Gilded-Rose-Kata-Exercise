@@ -28,7 +28,7 @@ TEST_CASE("GildedRoseUnitTest", "Foo")
             "Backstage passes to a TAFKAL80ETC concert, 14, 21\n"
             "Backstage passes to a TAFKAL80ETC concert, 9, 50\n"
             "Backstage passes to a TAFKAL80ETC concert, 4, 50\n"
-            "Conjured Mana Cake, 2, 5\n" 
+            "Conjured Mana Cake, 2, 4\n" 
             "\n";
 
     cout << expected;

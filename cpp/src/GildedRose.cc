@@ -19,6 +19,10 @@ void GildedRose::updateQuality()
             BackstagePass category = BackstagePass();
             category.updateOneItem(items[i]);
         }
+        else if (items[i].name.rfind("Conjured", 0) == 0) {
+            Conjured category = Conjured();
+            category.updateOneItem(items[i]);
+        }
         else
         {
             ItemCategory category = ItemCategory();
@@ -93,4 +97,14 @@ void GildedRose::BackstagePass::updateQuality(Item& item) {
 
 void GildedRose::BackstagePass::updateExpired(Item& item) {
     item.quality = 0;
+}
+
+void GildedRose::Conjured::updateExpired(Item& item) {
+    decrementQuality(item);
+    decrementQuality(item);
+}
+
+void GildedRose::Conjured::updateQuality(Item& item) {
+    decrementQuality(item);
+    decrementQuality(item);
 }
