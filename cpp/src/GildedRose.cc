@@ -14,12 +14,9 @@ void GildedRose::updateQuality()
 void GildedRose::updateOneItem(Item& item) {
     if (item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert")
     {
-        if (item.quality > 0)
+        if (item.name != "Sulfuras, Hand of Ragnaros")
         {
-            if (item.name != "Sulfuras, Hand of Ragnaros")
-            {
-                item.quality = item.quality - 1;
-            }
+            decrementQuality(item);
         }
     }
     else
@@ -32,18 +29,12 @@ void GildedRose::updateOneItem(Item& item) {
             {
                 if (item.sellIn < 11)
                 {
-                    if (item.quality < 50)
-                    {
-                        item.quality = item.quality + 1;
-                    }
+                    incrementQuality(item);
                 }
 
                 if (item.sellIn < 6)
                 {
-                    if (item.quality < 50)
-                    {
-                        item.quality = item.quality + 1;
-                    }
+                    incrementQuality(item);
                 }
             }
         }
@@ -60,12 +51,9 @@ void GildedRose::updateOneItem(Item& item) {
         {
             if (item.name != "Backstage passes to a TAFKAL80ETC concert")
             {
-                if (item.quality > 0)
+                if (item.name != "Sulfuras, Hand of Ragnaros")
                 {
-                    if (item.name != "Sulfuras, Hand of Ragnaros")
-                    {
-                        item.quality = item.quality - 1;
-                    }
+                    decrementQuality(item);
                 }
             }
             else
@@ -75,11 +63,24 @@ void GildedRose::updateOneItem(Item& item) {
         }
         else
         {
-            if (item.quality < 50)
-            {
-                item.quality = item.quality + 1;
-            }
+            incrementQuality(item);
         }
     }
 
+}
+
+void GildedRose::decrementQuality(Item& item)
+{
+    if (item.quality > 0)
+    {
+        item.quality = item.quality - 1;
+    }
+}
+
+void GildedRose::incrementQuality(Item& item)
+{
+    if (item.quality < 50)
+    {
+        item.quality = item.quality + 1;
+    }
 }
