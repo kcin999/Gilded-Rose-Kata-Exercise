@@ -27,13 +27,23 @@ private:
     protected:
         void decrementQuality(Item& item);
         void incrementQuality(Item& item);
-        void updateExpired(Item& item);
-        void updateSellIn(Item& item);
-        void updateQuality(Item& item);
+        virtual void updateExpired(Item& item);
+        virtual void updateSellIn(Item& item);
+        virtual void updateQuality(Item& item);
     };
     class Legendary : public ItemCategory {
         void updateExpired(Item& item);
         void updateSellIn(Item& item);
+        void updateQuality(Item& item);
+    };
+
+    class Cheese : public ItemCategory {
+        void updateExpired(Item& item);
+        void updateQuality(Item& item);
+    };
+
+    class BackstagePass :public ItemCategory {
+        void updateExpired(Item& item);
         void updateQuality(Item& item);
     };
 };

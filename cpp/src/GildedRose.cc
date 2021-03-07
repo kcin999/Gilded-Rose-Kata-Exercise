@@ -11,6 +11,14 @@ void GildedRose::updateQuality()
             Legendary category = Legendary();
             category.updateOneItem(items[i]);
         }
+        else if (items[i].name.compare("Aged Brie") == 0) {
+            Cheese category = Cheese();
+            category.updateOneItem(items[i]);
+        }
+        else if (items[i].name.compare("Backstage passes to a TAFKAL80ETC concert")==0) {
+            BackstagePass category = BackstagePass();
+            category.updateOneItem(items[i]);
+        }
         else
         {
             ItemCategory category = ItemCategory();
@@ -63,3 +71,26 @@ void GildedRose::Legendary::updateExpired(Item& item) {};
 void GildedRose::Legendary::updateSellIn(Item& item) {};
 
 void GildedRose::Legendary::updateQuality(Item& item) {};
+
+void GildedRose::Cheese::updateExpired(Item& item){
+    incrementQuality(item);
+};
+
+void GildedRose::Cheese::updateQuality(Item& item) {
+    incrementQuality(item);
+};
+
+void GildedRose::BackstagePass::updateQuality(Item& item) {
+    incrementQuality(item);
+
+    if (item.sellIn <= 10) {
+        incrementQuality(item);
+    }
+    if (item.sellIn <= 5) {
+        incrementQuality(item);
+    }
+}
+
+void GildedRose::BackstagePass::updateExpired(Item& item) {
+    item.quality = 0;
+}
