@@ -7,6 +7,7 @@ void GildedRose::updateQuality()
 {
     for (int i = 0; i < items.size(); i++)
     {
+        
         if (items[i].name.compare("Sulfuras, Hand of Ragnaros") == 0) {
             Legendary category = Legendary();
             category.updateOneItem(items[i]);
